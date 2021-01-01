@@ -13,3 +13,11 @@ class TestAuthentication(APITestCase):
         response = self.client.post(reverse('auth:token_obtain_pair'), user_login_details )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_login_without_credentials(self):
+        user_register_details= {"username":"Luffy", "password":"12345luf", "password2":"12345luf"}
+        self.client.post(reverse('auth:auth_register'), user_register_details)
+
+        user_login_details= {"username":"Treysongz", "password":"12345trey"}
+        response = self.client.post(reverse('auth:token_obtain_pair'), user_login_details )
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        
