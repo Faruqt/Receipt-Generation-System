@@ -4,7 +4,7 @@ from django.template.loader import get_template
 
 from xhtml2pdf import pisa
 
-def render_to_pdf(template_path, context):
+def receipt_in_pdf(template_path, context):
 	template = get_template(template_path)
 	html = template.render(context)
 	result = BytesIO()

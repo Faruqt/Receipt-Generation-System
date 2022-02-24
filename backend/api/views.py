@@ -8,7 +8,7 @@ from .models import Receipt
 from .serializers import ReceiptSerializer
 
 #import settings for converting to pdf
-from .utils import render_to_pdf
+from .utils import receipt_in_pdf
 from io import BytesIO
 from django.core.files import File
 
@@ -42,7 +42,7 @@ def create_pdf(obj):
 	css = 'static/css/style.css'
 
 	context = {'obj': obj}
-	pdf = render_to_pdf(template_path, context)
+	pdf = receipt_in_pdf(template_path, context)
 	if pdf:
 		filename = 'receipt.pdf'
 		receipt_file = File(BytesIO(pdf.content))
