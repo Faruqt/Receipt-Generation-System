@@ -8,10 +8,9 @@ from .models import Receipt
 from .serializers import ReceiptSerializer
 
 #import settings for converting to pdf
-from django.conf import settings
-from django.http import HttpResponse
-from django.template.loader import get_template
-from xhtml2pdf import pisa
+from .utils import render_to_pdf
+from io import BytesIO
+from django.core.files import File
 
 # Create your views here.
 @api_view(['GET', 'POST'])
@@ -22,30 +21,33 @@ def receipt(request):
 		return Response(serializer.data)
 
 	elif request.method == 'POST':
-		print(request.data)
-		serializer = ReceiptSerializer(data=request.data)
-		if serializer.is_valid():
-			serializer.save()
-			return Response(status=status.HTTP_201_CREATED)
-		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+		serialized = ReceiptSerializer(data=request.data)
+		if serialized.is_valid():
+			# print(serializer)
+			obj = request.data
+			pdf = create_pdf(obj)
+			new_serializer_data = serialized.data
+			new_serializer_data['receipt'] = pdf
+			serializer = ReceiptSerializer(data=new_serializer_data)
 
-def render_pdf_view(request, pk):
-    template_path = 'api/receipt-pdf.html'
+			if serializer.is_valid():
+				serializer.save()
+				return Response(status=status.HTTP_201_CREATED)
+			return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    obj = get_object_or_404(Receipt, pk=pk)
-    context = {'obj': obj}
+		return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="receipt.pdf"'
+def create_pdf(obj):
+	template_path = 'api/receipt-pdf.html'
+	css = 'static/css/style.css'
 
-    # find the template and render it.
-    template = get_template(template_path)
-    html = template.render(context)
+	context = {'obj': obj}
+	pdf = render_to_pdf(template_path, context)
+	if pdf:
+		filename = 'receipt.pdf'
+		receipt_file = File(BytesIO(pdf.content))
+		user_receipt = File(receipt_file, filename)
+	
+	return user_receipt
 
-    # create a pdf
-    pisa_status = pisa.CreatePDF(
-       html, dest=response)
-    # if error then show some funy view
-    if pisa_status.err:
-       return HttpResponse('We had some errors <pre>' + html + '</pre>')
-    return response
+
