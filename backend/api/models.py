@@ -7,6 +7,7 @@ class Receipt(models.Model):
 	address = models.CharField(max_length=240)
 	phone = models.CharField(max_length=20)
 	total_amount = models.PositiveIntegerField()
+	receipt = models.FileField(upload_to='receipts', null=True, blank=True)
 	created = models.DateField(default=timezone.now().strftime("%Y-%m-%d")) 
 
 	def __str__(self):
