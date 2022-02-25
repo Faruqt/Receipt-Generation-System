@@ -1,8 +1,10 @@
 import itertools 
 from django.shortcuts import render
-from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+
 
 #import model and model serializer
 from .models import Receipt
@@ -13,17 +15,19 @@ from .utils import receipt_in_pdf
 from io import BytesIO
 from django.core.files import File
 
-# Create your views here.
-@api_view(['GET', 'POST'])
-def receipt(request):
-	pdfs = {}
-	receipt_no = []
-	if request.method == 'GET':
+class ReceiptView(APIView):
+	# permission_classes = (IsAuthenticated,)
+
+	# get list of all receipt sets 
+	def get(self, request):
 		receipt = Receipt.objects.all()
 		serializer = ReceiptSerializer(receipt, many=True)
 		return Response(serializer.data)
 
-	elif request.method == 'POST':
+	#create a new receipt set
+	def post(self, request):
+		pdfs = {}
+		receipt_no = []
 		serialized = ReceiptSerializer(data=request.data)
 		#confirm that input is correct and accurate
 		if serialized.is_valid():

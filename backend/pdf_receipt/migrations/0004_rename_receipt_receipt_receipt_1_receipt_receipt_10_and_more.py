@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api', '0003_receipt_receipt'),
+        ('pdf_receipt', '0003_receipt_receipt'),
     ]
 
     operations = [
