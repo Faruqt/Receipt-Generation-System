@@ -5,12 +5,11 @@ from django.contrib.auth.password_validation import validate_password
 
 class RegisterUserSerializer(serializers.ModelSerializer):
     username = serializers.CharField(
-            required=True,
+            required=True, min_length=4,
             validators=[UniqueValidator(queryset=User.objects.all())]
             )
-
-    password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
-    password2 = serializers.CharField(write_only=True, required=True)
+    password = serializers.CharField(write_only=True, required=True, min_length=6, validators=[validate_password])
+    password2 = serializers.CharField(write_only=True, min_length=6, required=True)
 
     class Meta:
         model = User
@@ -31,3 +30,12 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+
+class LoginSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(max_length=255, min_length=4, required=True)
+    password = serializers.CharField(
+        max_length=65, min_length=8, write_only=True, required=True)
+    class Meta:
+        model = User
+        fields = ['username', 'password']
