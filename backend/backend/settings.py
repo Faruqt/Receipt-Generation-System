@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #my_app
     'pdf_receipt',
+    'authentication',
     'rest_framework',
 ]
 
