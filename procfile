@@ -1,1 +1,1 @@
-web:backend.wsgi
+heroku buildpacks:clear
