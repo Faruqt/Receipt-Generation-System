@@ -5,6 +5,6 @@ from . import views
 app_name = 'authentication'
 
 urlpatterns = [
-    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-	path('api/register/', views.CreateUserView.as_view(), name='auth_register'),
+    path('api/auth/login/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+	path('api/auth/register/', views.CreateUserView.as_view(), name='auth_register'),
 ]
