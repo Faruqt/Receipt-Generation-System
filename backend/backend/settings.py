@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,12 +47,26 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
+#Declare rest framework settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
 
+#Declare swagger settings
+SWAGGER_SETTINGS={
+    'SECURITY_DEFINITIONS' : {
+        "Auth Token example [Bearer JWT ]" :{
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    'USE_SESSION_AUTH': False
+}
+
+#Declare simple jwt token settings
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
