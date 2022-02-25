@@ -1,6 +1,7 @@
 import itertools 
 from django.shortcuts import render
-from rest_framework.views import APIView
+# from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
@@ -15,8 +16,9 @@ from .utils import receipt_in_pdf
 from io import BytesIO
 from django.core.files import File
 
-class ReceiptView(APIView):
-	# permission_classes = (IsAuthenticated,)
+class ReceiptView(GenericAPIView):
+	permission_classes = (IsAuthenticated,)
+	serializer_class = ReceiptSerializer
 
 	# get list of all receipt sets 
 	def get(self, request):
@@ -87,3 +89,9 @@ def bytes_to_file(pdf, filename):
 	the_receipt = File(receipt_file, filename)
 
 	return the_receipt
+
+
+class SingleReceiptSetView(RetrieveAPIView):
+	permission_classes = (IsAuthenticated,)
+	queryset = Receipt.objects.all()
+	serializer_class = ReceiptSerializer
