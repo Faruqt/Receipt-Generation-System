@@ -10,9 +10,8 @@ db.sqlite3
 **/.vscode/
 
 # virtual environment
-.env/
+.env
 env/
-backend/.env
 
 # Django
 *.log
