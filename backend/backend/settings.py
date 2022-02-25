@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     #my_app
     'pdf_receipt',
     'authentication',
+    'drf_yasg',
     'rest_framework',
 ]
 
