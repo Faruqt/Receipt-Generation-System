@@ -7,14 +7,19 @@ Python, Django, Django Rest Framework, Swagger UI and xhtml2pdf
 
 ## Code Usage
 - Clone the repository
-- Create your environment 
- ```shell
-       python3 -m venv env
- ```
- - Activate your environment 
- ```shell
-       source env/bin/activate
- ```
+- Create and activate your environment 
+  - For mac/unix users: 
+
+     **create:** ```python3 -m venv env```
+
+     **activate:** `source env/bin/activate`
+
+  - For windows users: 
+
+    **create:** `py -m venv env`
+
+    **activate:** `.\env\Scripts\activate`
+    
  - Install all requirements
  ```shell
        pip install -r requirements.txt
