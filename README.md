@@ -1,4 +1,4 @@
-# Receipt-Generation-System
+# Receipt Generation System
 
 This application takes in user input in the form `name` , `address`, `phone number`, `total cost` and then generates a receipt in Pdf format then stores it on the backend server.
 
