@@ -32,14 +32,17 @@ Python, Django, Django Rest Framework, Swagger UI and xhtml2pdf
 ```shell
        python3 manage.py migrate
  ```
- - Run the following command to run the code in development mode
-```shell
-       python3 manage.py runserver
- ```
+ 
 ## Testing the application
  - Run the following command to run test the receipt and authentication applications
 ```shell
        python3 manage.py test
+ ```
+ 
+## Running the application
+  - Run the following command to run the code in development mode
+```shell
+       python3 manage.py runserver
  ```
  
 ## Link to deployed application
