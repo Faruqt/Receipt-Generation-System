@@ -43,4 +43,4 @@ Application was deployed on the heroku server and it can be accessed via [this l
 ## Preview
 Below is an image of the Swagger UI for the application
 <br>
-<img src="./static/images/Screenshot.png"> 
+<img src="./static/images/preview.png"> 
