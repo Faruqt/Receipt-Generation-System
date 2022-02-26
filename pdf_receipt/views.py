@@ -59,7 +59,7 @@ class ReceiptView(GenericAPIView):
 			#confirm data is still valid and then save
 			if serializer.is_valid():
 				serializer.save()
-				json = serializer.data
+				json = {'Receipts successfully generated'}
 				return Response(json, status=status.HTTP_201_CREATED)
 			return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
