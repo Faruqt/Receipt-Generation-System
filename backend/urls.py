@@ -32,9 +32,13 @@ schema_view = get_schema_view(
       default_version='v1',
       description="Generate receipt in pdf format based on user input.\
                     You need to first register an account, login with the newly created details,\
-                    then use the auth token to authorize the receipt endpoints ",
+                    then use the auth token to authorize the receipt endpoints"
+                    "\n\nYou can view the generated pdf files in the admin using this credential:\
+                    Username: \"Dukka\", Password= \"Dukka123\" "
+                    "\n              OR"
+                    "\nCopy the pdf url and append it to the url e.g https://receipt-generation-system.herokuapp.com/<receipt url>",
       terms_of_service="https://receipt_generator/policies/terms/",
-      contact=openapi.Contact(email="contact@receipt_generator.remote"),
+      contact=openapi.Contact(email="faruqabdulsalam@yahoo.com"),
       license=openapi.License(name="Receipt Generator License"),
    ),
    public=True,
