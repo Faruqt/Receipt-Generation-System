@@ -32,7 +32,7 @@ schema_view = get_schema_view(
       default_version='v1',
       description="Generate receipt in pdf format based on user input.\
                     You need to first register an account, login with the newly created details,\
-                    then use the auth token to authorize the receipt endpoints"
+                    then use the authentication access token to authorize the receipt endpoints"
                     "\n\nYou can view the generated pdf files in the admin using this credential:\
                     Username: \"Dukka\", Password= \"Dukka123\" "
                     "\n              OR"
