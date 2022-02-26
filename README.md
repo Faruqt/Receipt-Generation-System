@@ -32,6 +32,10 @@ Python, Django, Django Rest Framework, Swagger UI and xhtml2pdf
        python3 manage.py runserver
  ```
 
- ## Link to deployed application
-Application was deployed on the heroku server
-`https://receipt-generation-system.herokuapp.com/`
+## Link to deployed application
+Application was deployed on the heroku server and it can be accessed via [this link](https://receipt-generation-system.herokuapp.com/)
+
+## Preview
+Below is an image of the Swagger UI for the application
+<br>
+<img src="./static/images/Screenshot.png"> 
