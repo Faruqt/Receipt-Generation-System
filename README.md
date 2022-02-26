@@ -36,7 +36,12 @@ Python, Django, Django Rest Framework, Swagger UI and xhtml2pdf
 ```shell
        python3 manage.py runserver
  ```
-
+## Testing the application
+ - Run the following command to run test the receipt and authentication applications
+```shell
+       python3 manage.py test
+ ```
+ 
 ## Link to deployed application
 Application was deployed on the heroku server and it can be accessed via [this link](https://receipt-generation-system.herokuapp.com/)
 
