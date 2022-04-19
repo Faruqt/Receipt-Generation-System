@@ -1,6 +1,6 @@
 # Receipt Generation System
 
-This application takes in user input in the form `name` , `address`, `phone number`, `total cost` and then generates a receipt in Pdf format then stores it on the backend server.
+This application takes in user input in the form `name` , `address`, `phone number`, `total cost` , generates a receipt in Pdf format and then stores it on the backend server.
 
 ## Tools Used
 Python, Django, Django Rest Framework, Swagger UI and xhtml2pdf
