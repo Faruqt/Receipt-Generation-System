@@ -69,7 +69,7 @@ def create_pdf(obj, template, p):
 	template_path = template
 	context = {'obj': obj}
 
-	#call functiom in utils.py script to create a template with the arguments
+	#call function in utils.py script to create a template with the arguments
 	# 'path to the template' and 'context' 
 	pdf = receipt_in_pdf(template_path, context)
 	if pdf:
